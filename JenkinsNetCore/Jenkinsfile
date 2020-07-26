@@ -14,14 +14,14 @@ pipeline {
 
     stage('Build') {
           steps {
-               sh 'dotnet build "$WORKSPACE/src/EAApp.csproj"'
+               sh 'dotnet build "$WORKSPACE/src/EAApp/EAApp.csproj"'
           }
     }
 
     stage('Publish') {
           steps {
-    	      sh 'dotnet publish "$WORKSPACE/src/EAApp.csproj"'
-            archiveArtifacts artifacts: 'src/bin/Debug/netcoreapp3.1/publish/*'
+    	      sh 'dotnet publish "$WORKSPACE/src/EAApp/EAApp.csproj"'
+            archiveArtifacts artifacts: 'src/EAApp/bin/Debug/netcoreapp3.1/publish/*'
           }
     }
   }
