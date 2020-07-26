@@ -1,0 +1,28 @@
+pipeline {
+  agent {
+    docker {
+      image 'jenkins/slave:latest-jdk11'
+    }
+  }
+
+  stages {
+    stage('SCM') {
+        steps {
+      		checkout([$class: 'GitSCM', branches: [[name: '*/Develop']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/executeautomation/JenkinsPipeline']]])
+	      }
+    }
+
+    stage('Build') {
+          steps {
+               sh 'dotnet build "$WORKSPACE/src/EAApp.csproj"'
+          }
+    }
+
+    stage('Publish') {
+          steps {
+    	      sh 'dotnet publish "$WORKSPACE/src/EAApp.csproj"'
+            archiveArtifacts artifacts: 'src/bin/Debug/netcoreapp3.1/publish/*'
+          }
+    }
+  }
+}
