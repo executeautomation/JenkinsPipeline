@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'jenkins/slave:latest-jdk11'
+      image 'jenkinsnetcoreagent:latest'
     }
   }
 
