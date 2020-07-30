@@ -12,10 +12,11 @@ pipeline {
             steps{
                 script {
                     app = docker.image("testproject/agent:latest")
-                      app.inside {
+                      app.inside() {
                         sh 'java --version'
+                      }
                     }
-                }
+
             }
         }
 
