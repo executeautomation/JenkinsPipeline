@@ -20,9 +20,11 @@ pipeline {
         stage('Check Image') {
             steps {
                 script {
-                    app.inside {
+                    container = app.run()
+                    container.inside {
                         sh 'java --version'
                     }
+                    container.stop()
                 }
             }
         }
