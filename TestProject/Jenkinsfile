@@ -1,0 +1,26 @@
+node {
+
+    stages {
+        stage('SCM') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/JenkinsTestProject']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/executeautomation/SeleniumWithCucucumber']]])
+            }
+        }
+
+        stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        app = docker.build("testproject/agent:latest")
+
+
+        }
+
+        stage('Check Image') {
+            app.inside {
+                sh 'echo java --version'
+            }
+        }
+
+    }
+}
