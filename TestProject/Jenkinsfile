@@ -12,6 +12,9 @@ pipeline {
             steps{
                 script {
                     app = docker.build("testproject/agent:latest")
+                      app.inside {
+                        sh 'java --version'
+                    }
                 }
             }
         }
@@ -20,11 +23,9 @@ pipeline {
         stage('Check Image') {
             steps {
                 script {
-                    container = app.run()
-                    container.inside {
+                    app.inside {
                         sh 'java --version'
                     }
-                    container.stop()
                 }
             }
         }
