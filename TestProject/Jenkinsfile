@@ -11,8 +11,7 @@ pipeline {
         stage('Build image') {
             steps{
                 script {
-                    app = docker.image("testproject/agent:latest")
-                      app.inside() {
+                    docker.image("testproject/agent:latest").inside() {
                         sh 'java --version'
                       }
                     }
