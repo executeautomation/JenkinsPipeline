@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     app.inside {
-                        sh 'java --version'
+                        sh '/opt/testproject/agent java --version'
                     }
                 }
             }
