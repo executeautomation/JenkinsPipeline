@@ -21,6 +21,7 @@ pipeline {
             steps {
                 script {
                     app.inside() {
+                        sh 'pwd'
                         sh 'java --version'
                     }
                 }
