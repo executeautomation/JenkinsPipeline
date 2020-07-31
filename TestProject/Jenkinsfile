@@ -11,19 +11,16 @@ pipeline {
         stage('Build image') {
             steps{
                 script {
-                    docker.image("testproject/agent:latest").inside() {
-                        sh 'java --version'
-                      }
+                        app = docker.image("testproject/agent:latest")
                     }
-
+                }
             }
-        }
 
 
         stage('Check Image') {
             steps {
                 script {
-                    app.inside {
+                    app.inside() {
                         sh 'java --version'
                     }
                 }
