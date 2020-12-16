@@ -11,7 +11,7 @@ pipeline {
 
         stage('Test') {
           steps {
-            echo 'Get Driver Path ${ChromeDriverPath}'
+            echo "Get Driver Path ${ChromeDriverPath}"
           }
         }
 
