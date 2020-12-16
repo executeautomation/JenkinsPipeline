@@ -11,7 +11,7 @@ pipeline {
 
         stage('Test') {
           steps {
-            echo 'Testing a Dotnet  Core'
+            echo 'Get Driver Path ${ChromeDriverPath}'
           }
         }
 
