@@ -5,23 +5,13 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            echo 'Building the .NET Core application'
+            echo 'Building a Dot Ner Core'
           }
         }
 
         stage('Test') {
           steps {
-            echo 'Testing the application'
-            echo "Get the DriverPath ${ChromeDriverPath}"
-          }
-        }
-
-        stage('Test Log') {
-          environment {
-            LocalVariable = 'HelloLocal'
-          }
-          steps {
-            writeFile(file: 'LogTestFile.txt', text: "This is the ChromeDriverPath ${ChromeDriverPath} and localvariable Value ${LocalVariable}")
+            echo 'Testing a Dotnet  Core'
           }
         }
 
@@ -29,23 +19,8 @@ pipeline {
     }
 
     stage('Deploy') {
-      when {
-        branch 'master'
-      }
-      parallel {
-        stage('Deploy') {
-          steps {
-            input(message: 'Do you want to Deployment ?', id: 'OK')
-            echo 'Deploying the app in IIS server'
-          }
-        }
-
-        stage('Artifacts') {
-          steps {
-            archiveArtifacts 'LogTestFile.txt'
-          }
-        }
-
+      steps {
+        echo 'Deploying Dot net Core'
       }
     }
 
