@@ -26,6 +26,6 @@ pipeline {
 
   }
   environment {
-    ChromeDriverPath = 'C:\\Driver\\Path\\ChromeDriver.exe'
+    ChromeDriverPath = '/home/alex/.config/google-chrome'
   }
 }
