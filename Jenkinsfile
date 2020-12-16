@@ -20,6 +20,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
+        input(message: 'Do you want to deploy', id: 'Ok')
         echo 'Deploying Dot net Core'
       }
     }
